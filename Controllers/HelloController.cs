@@ -77,13 +77,13 @@ namespace Webapi.Controllers
         [HttpDelete("/users/{id}")]
         public async Task<IActionResult> DeleteTodoItem(int id)
         {
-            var todoItem = await _context.Users.FindAsync(id);
-            if (todoItem == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(todoItem);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
             return NoContent();
